@@ -1,0 +1,43 @@
+[{
+  "name": "Gaspar Brasserie",
+  "address": "185 Sutter St, San Francisco, CA 94109",
+  "description": "Expect an intimate venue with the ambience of a private club. The mood is casual, the guests sublime.",
+  "url": "gasparbrasserie.com",
+  "image": { "url": "http://shoutem.github.io/static/getting-started/restaurant-1.jpg"},
+  "mail": "info@gasparbrasserie.com"
+}, {
+  "name": "Chalk Point Kitchen",
+  "address": "527 Broome St, New York, NY 10013",
+  "description": "Stylish restaurant serving market-to-table American fare in modern farmhouse digs with cellar bar.",
+  "url": "http://www.chalkpointkitchen.com/",
+  "image": { "url": "http://shoutem.github.io/static/getting-started/restaurant-2.jpg"},
+  "mail": "feedme@chalkpointkitchen.com"
+}, {
+  "name": "Kyoto Amber Upper East",
+  "address": "225 Mulberry St, New York, NY 10012",
+  "description": "Amber Upper East is located on the corner of 80th and 3rd Avenue. We serve Japanese and Asian cuisines.",
+  "url": "https://www.opentable.com/amber-upper-east",
+  "image": { "url": "http://shoutem.github.io/static/getting-started/restaurant-3.jpg"},
+  "mail": "-"
+}, {
+  "name": "Sushi Academy",
+  "address": "1900 Warner Ave. Unit A Santa Ana, CA",
+  "description": "The educational philosophy of the California Sushi Academy crosses borders, race and gender to bring greater Japanese cultural understanding and appreciation through the culinary experience.",
+  "url": "http://www.sushi-academy.com/",
+  "image": { "url": "http://shoutem.github.io/static/getting-started/restaurant-4.jpg"},
+  "mail": "email@sushi-academy.com"
+}, {
+  "name": "Sushibo",
+  "address": "35 Sipes Key, New York, NY 10012",
+  "description": "",
+  "url": "http://www.sushibo.cat/en/",
+  "image": { "url": "http://shoutem.github.io/static/getting-started/restaurant-5.jpg"},
+  "mail": ""
+}, {
+  "name": "Mastergrill",
+  "address": "550 Upton Rue, San Francisco, CA 94109",
+  "description": "Get the grilled chicken over rice and a order of spring rolls.",
+  "url": "http://www.master-grill.com/",
+  "image": { "url": "http://shoutem.github.io/static/getting-started/restaurant-6.jpg"},
+  "mail": "-"
+}]
