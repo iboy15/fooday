@@ -15,28 +15,49 @@ import {
   Subtitle,
   Screen
 } from '@shoutem/ui';
-import { connect } from 'react-redux';
-import {fetchRestaurant} from '../redux/actions/restaurant';
-import { withNavigation } from 'react-navigation';
+import {
+  connect
+} from 'react-redux';
+import {
+  fetchRestaurant
+} from '../redux/actions/restaurant';
+import {
+  withNavigation
+} from 'react-navigation';
 
 
 class HomeScreen extends React.Component {
     constructor(props) {
       super(props);
       this.renderRow = this.renderRow.bind(this);
-      this.state = {
-      }
+      this.state = {}
     }
 
     state = {
       fontsAreLoaded: false,
     };
-    
+
     componentDidMount() {
       console.log('panggil data')
       this.props.fetchRestaurant()
     }
-  
+
+    handleClick = (id) => {
+      switch (id) {
+        case 71343:
+          return (this.props.navigation.navigate('Events'))
+        case 537:
+          return (this.props.navigation.navigate('Restaurant'))
+        case 1:
+          return (this.props.navigation.navigate('Maps'))
+        case 274852:
+          return (this.props.navigation.navigate('Category'))
+        case 29:
+          return (this.props.navigation.navigate('Restaurant'))
+
+      }
+    };
+
     async componentWillMount() {
       await Font.loadAsync({
         'Rubik-Black': require('../node_modules/@shoutem/ui/fonts/Rubik-Black.ttf'),
@@ -51,15 +72,17 @@ class HomeScreen extends React.Component {
         'Rubik-Regular': require('../node_modules/@shoutem/ui/fonts/Rubik-Regular.ttf'),
         'rubicon-icon-font': require('../node_modules/@shoutem/ui/fonts/rubicon-icon-font.ttf'),
       });
-  
-      this.setState({ fontsAreLoaded: true });
+
+      this.setState({
+        fontsAreLoaded: true
+      });
     }
-  
     renderRow(restaurant) { 
       return (
-        <TouchableOpacity onPress={() => 
-          this.props.navigation.navigate('Details', {...restaurant.collection})}>        
-          <ImageBackground styleName="large-banner" source={{ uri: restaurant.collection.image_url }}>
+        // <TouchableOpacity onPress={() => 
+        //   this.props.navigation.navigate('Details', {...restaurant.collection})}>        
+        <TouchableOpacity onPress={() =>this.handleClick(restaurant.collection.collection_id)} >
+         <ImageBackground styleName="large-banner" source={{ uri: restaurant.collection.image_url }}>
             <Tile>
               <Title>{restaurant.collection.title}</Title>
               <Subtitle>{restaurant.collection.description}</Subtitle>

@@ -7,14 +7,14 @@ import styles, { colors } from './styles/index.style';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 // import LinearGradient from 'react-native-linear-gradient';
 import { ENTRIES1, ENTRIES2 } from './styles/entries';
-import SliderEntry from './styles/SliderEntry';
+import SliderEntryMenu from './styles/SliderEntryMenu';
 import { scrollInterpolators, animatedStyles } from './styles/animations';
 
 
 const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
 
-export default class SettingsScreen extends React.Component {
+export default class CategoryScreen extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -23,12 +23,12 @@ export default class SettingsScreen extends React.Component {
 }
 
 _renderItem ({item, index}) {
-    return <SliderEntry data={item} even={(index + 1) % 2 === 0} />;
+    return <SliderEntryMenu data={item} even={(index + 1) % 2 === 0} />;
 }
 
 _renderItemWithParallax ({item, index}, parallaxProps) {
     return (
-        <SliderEntry
+        <SliderEntryMenu
           data={item}
           even={(index + 1) % 2 === 0}
           parallax={true}
@@ -38,11 +38,11 @@ _renderItemWithParallax ({item, index}, parallaxProps) {
 }
 
 _renderLightItem ({item, index}) {
-    return <SliderEntry data={item} even={false} />;
+    return <SliderEntryMenu data={item} even={false} />;
 }
 
 _renderDarkItem ({item, index}) {
-    return <SliderEntry data={item} even={true} />;
+    return <SliderEntryMenu data={item} even={true} />;
 }
 mainExample (number, title) {
   const { slider1ActiveSlide } = this.state;

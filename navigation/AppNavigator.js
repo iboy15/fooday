@@ -1,13 +1,16 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createSwitchNavigator,createStackNavigator,TabNavigator,createBottomTabNavigator } from 'react-navigation';
-import LinksScreen from '../screens/LinksScreen';
+import AboutScreen from '../screens/AboutScreen';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 
-import SettingsScreen from '../screens/SettingsScreen';
+import CategoryScreen from '../screens/CategoryScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import RestaurantScreen from '../screens/RestaurantScreen';
+import MapsScreen from '../screens/MapsScreen';
+import EventsScreen from '../screens/EventsScreen';
+
 
 export const StacNav = createStackNavigator ({
   Home : {
@@ -16,9 +19,24 @@ export const StacNav = createStackNavigator ({
   },
   Details : {
     screen : DetailsScreen,
+  },
+  Maps: {
+    screen: MapsScreen,
+    navigationOptions: {
+      tabBarVisible: false,
   }
-
+  },
+  Events: {
+    screen: EventsScreen,
+  },
+  Category: {
+    screen: CategoryScreen,
+  },
+  Restaurant: {
+    screen: RestaurantScreen,
+  }
 })
+
 
 export const Tabs = createBottomTabNavigator({
   
@@ -39,39 +57,17 @@ export const Tabs = createBottomTabNavigator({
     },
 
   },
-  Settings: {
-    screen: SettingsScreen,
-    navigationOptions: {
-      tabBarLabel: 'Settings',
-      tabBarIcon: ({ focused }) => (
-        <TabBarIcon
-          focused={focused}
-          name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-        />
-      ),
-    },
-  },
-  Links: {
-    screen: LinksScreen,
+
+
+
+  About: {
+    screen: AboutScreen,
     navigationOptions: {
       tabBarLabel: 'Abouts',
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
           focused={focused}
           name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
-        />
-      ),
-    },
-  },
-
-  Restaurant: {
-    screen: RestaurantScreen,
-    navigationOptions: {
-      tabBarLabel: 'Restaurant',
-      tabBarIcon: ({ focused }) => (
-        <TabBarIcon
-          focused={focused}
-          name={Platform.OS === 'ios' ? 'ios-restaurant' : 'md-restaurant'}
         />
       ),
     },

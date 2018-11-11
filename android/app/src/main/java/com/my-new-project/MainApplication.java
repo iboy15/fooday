@@ -3,6 +3,8 @@ package com.my-new-project;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.actionsheet.ActionSheetPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.shoutem.uiaddons.UiAddonsExtensionPackage;
 import com.reactnative.photoview.PhotoViewPackage;
@@ -28,6 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MapsPackage(),
+            new ActionSheetPackage(),
             new ImagePickerPackage(),
             new UiAddonsExtensionPackage(),
             new PhotoViewPackage(),
