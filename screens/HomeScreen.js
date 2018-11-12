@@ -44,9 +44,9 @@ class HomeScreen extends React.Component {
 
     handleClick = (id) => {
       switch (id) {
-        case 71343:
+        case 274827:
           return (this.props.navigation.navigate('Events'))
-        case 537:
+        case 290737:
           return (this.props.navigation.navigate('Restaurant'))
         case 1:
           return (this.props.navigation.navigate('Maps'))

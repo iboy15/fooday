@@ -6,7 +6,11 @@
     "name": "my-new-project",
     "slug": "my-new-project",
     "version": "1.0.0",
-    "description": ""
+    "description": "",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "backgroundColor": "#060604"
+    }
   },
   "android": {
     "package": "com.boysapp.fooday"

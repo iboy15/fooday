@@ -9,7 +9,7 @@ export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   };
-
+  static router = Tabs.router;
   render() {
     
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
@@ -25,7 +25,7 @@ export default class App extends React.Component {
         <Provider store={myStore}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <Tabs />
+          <Tabs navigation={this.props.navigation}/>
         </View>
        </Provider>
       );
