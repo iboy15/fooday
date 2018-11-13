@@ -1,19 +1,15 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { Linking, Alert } from 'react-native';
-import {
-  Text,
-  Button,
-  Icon,
-} from '@shoutem/ui';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { Linking, Alert } from "react-native";
+import { Text, Button, Icon } from "@shoutem/ui";
 
 export default class SocialButton extends Component {
   static propTypes = {
     url: PropTypes.string,
     title: PropTypes.string,
     icon: PropTypes.string.isRequired,
-    openURL: PropTypes.func,
-  }
+    openURL: PropTypes.func
+  };
 
   constructor(props) {
     super(props);
@@ -23,14 +19,12 @@ export default class SocialButton extends Component {
   buttonPressHandle() {
     const { icon, openURL, url, title } = this.props;
 
-    if (icon === 'call' || icon === 'email') {
-      Linking.canOpenURL(url).then((supported) => {
+    if (icon === "call" || icon === "email") {
+      Linking.canOpenURL(url).then(supported => {
         if (supported) {
           Linking.openURL(url);
         } else {
-          Alert.alert(
-            [{ text: 'OK', onPress: () => {} }],
-          );
+          Alert.alert([{ text: "OK", onPress: () => {} }]);
         }
       });
       return;

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import { ParallaxImage } from "react-native-snap-carousel";
-import styles from "./SliderEntry.style";
+import styles from "./SliderEntryMenu.style";
 
-export default class SliderEntry extends Component {
+export default class SliderEntryMenu extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     even: PropTypes.bool,
@@ -14,7 +14,7 @@ export default class SliderEntry extends Component {
 
   get image() {
     const {
-      data: { illustration },
+      data: { image },
       parallax,
       parallaxProps,
       even
@@ -22,7 +22,7 @@ export default class SliderEntry extends Component {
 
     return parallax ? (
       <ParallaxImage
-        source={{ uri: illustration }}
+        source={image}
         containerStyle={[
           styles.imageContainer,
           even ? styles.imageContainerEven : {}
@@ -34,13 +34,14 @@ export default class SliderEntry extends Component {
         {...parallaxProps}
       />
     ) : (
-      <Image source={{ uri: illustration }} style={styles.image} />
+      <Image source={{ uri: image }} style={styles.image} />
     );
   }
 
   render() {
     const {
-      data: { title, subtitle },
+      data: { title, description, image },
+      navigation,
       even
     } = this.props;
 
@@ -58,9 +59,9 @@ export default class SliderEntry extends Component {
       <TouchableOpacity
         activeOpacity={1}
         style={styles.slideInnerContainer}
-        onPress={() => {
-          alert(`You've clicked '${title}'`);
-        }}>
+        onPress={() =>
+          navigation.navigate("Details", { title, description, image })
+        }>
         <View style={styles.shadow} />
         <View
           style={[
@@ -78,7 +79,7 @@ export default class SliderEntry extends Component {
           <Text
             style={[styles.subtitle, even ? styles.subtitleEven : {}]}
             numberOfLines={2}>
-            {subtitle}
+            {description}
           </Text>
         </View>
       </TouchableOpacity>

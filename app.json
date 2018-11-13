@@ -10,9 +10,12 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "backgroundColor": "#060604"
+    },
+    "android": {
+      "package": "com.boysapp.fooday"
+    },
+    "ios": {
+      "bundleIdentifier": "com.boysapp.fooday"
     }
-  },
-  "android": {
-    "package": "com.boysapp.fooday"
   }
 }

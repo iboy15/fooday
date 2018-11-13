@@ -1,12 +1,11 @@
-import {createStore,combineReducers,applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import restaurantReducer from '../reducers/restaurant' 
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import restaurantReducer from "../reducers/restaurant";
 
 const reducers = combineReducers({
-    restaurants :restaurantReducer,
-})
+  restaurants: restaurantReducer
+});
 
+const middleware = applyMiddleware(thunk);
 
-const middleware = applyMiddleware(thunk)
-
-export default createStore (reducers,middleware)
+export default createStore(reducers, middleware);
