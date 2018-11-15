@@ -253,12 +253,12 @@ export default class CategoryScreen extends React.Component {
             directionalLockEnabled={true}>
             {example1}
             {example2}
-            {example3}
+            {/* {example3}
             {example4}
             {example5}
             {example6}
             {example7}
-            {example8}
+            {example8} */}
           </ScrollView>
         </View>
       </SafeAreaView>

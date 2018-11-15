@@ -13,6 +13,7 @@ import {
 import { AppLoading } from "expo";
 import { connect } from "react-redux";
 import { fetchMaps } from "../redux/actions/restaurant";
+import Carousel from "react-native-snap-carousel";
 import MapView from "react-native-maps";
 const Images = [
   {
@@ -119,22 +120,20 @@ class MapsScreen extends React.Component {
     // We should detect when scrolling has stopped then animate
     // We should just debounce the event listener here
     this.props.fetchMaps();
-    console.log(maps);
 
     this.animation.addListener(({ value }) => {
       let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
-      if (index >= this.state.markers.length) {
-        index = this.state.markers.length - 1;
+      if (index >= this.props.maps.length) {
+        index = this.props.maps.length - 1;
       }
       if (index <= 0) {
         index = 0;
       }
-
       clearTimeout(this.regionTimeout);
       this.regionTimeout = setTimeout(() => {
         if (this.index !== index) {
           this.index = index;
-          const { coordinate } = this.state.markers[index];
+          const { coordinate } = this.props.maps[index];
           this.map.animateToRegion(
             {
               ...coordinate,
@@ -147,13 +146,30 @@ class MapsScreen extends React.Component {
       }, 10);
     });
   }
-
+  _renderItem({ item, index }) {
+    return (
+      <View style={styles.card} key={index}>
+        <Image
+          source={{ uri: item.image }}
+          style={styles.cardImage}
+          resizeMode="cover"
+        />
+        <View style={styles.textContent}>
+          <Text numberOfLines={1} style={styles.cardtitle}>
+            {item.name}
+          </Text>
+          <Text numberOfLines={1} style={styles.cardDescription}>
+            {item.category}
+          </Text>
+        </View>
+      </View>
+    );
+  }
   render() {
-    // const {maps} =  this.props;
-    // if(!maps.length)
-    // return null;
+    const { maps } = this.props;
+    if (!maps.length) return null;
 
-    const interpolations = this.state.markers.map((marker, index) => {
+    const interpolations = maps.map((marker, index) => {
       const inputRange = [
         (index - 1) * CARD_WIDTH,
         index * CARD_WIDTH,
@@ -172,12 +188,12 @@ class MapsScreen extends React.Component {
       return { scale, opacity };
     });
     return (
-      <View style={mapstyles.container}>
+      <View style={styles.container}>
         <MapView
           ref={map => (this.map = map)}
           initialRegion={this.state.region}
-          style={mapstyles.container}>
-          {this.state.markers.map((marker, index) => {
+          style={styles.container}>
+          {maps.map((marker, index) => {
             const scaleStyle = {
               transform: [
                 {
@@ -188,81 +204,52 @@ class MapsScreen extends React.Component {
             const opacityStyle = {
               opacity: interpolations[index].opacity
             };
-
-            // const mycoordinate = {
-            //   latitude: -6.205695,
-            //   longitude: 106.8384574,
-            // }
-
             return (
               <MapView.Marker key={index} coordinate={marker.coordinate}>
-                <Animated.View style={[mapstyles.markerWrap, opacityStyle]}>
-                  <Animated.View style={[mapstyles.ring, scaleStyle]} />
-                  <View style={mapstyles.marker} />
+                <Animated.View style={[styles.markerWrap, opacityStyle]}>
+                  <Animated.View style={[styles.ring, scaleStyle]} />
+                  <View style={styles.marker} />
                 </Animated.View>
               </MapView.Marker>
             );
           })}
         </MapView>
-        <Animated.ScrollView
-          horizontal
-          scrollEventThrottle={1}
-          showsHorizontalScrollIndicator={false}
-          snapToInterval={CARD_WIDTH}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: this.animation
-                  }
-                }
-              }
-            ],
-            { useNativeDriver: true }
-          )}
-          style={mapstyles.scrollView}
-          contentContainerStyle={mapstyles.endPadding}>
-          {this.state.markers.map((marker, index) => (
-            <View style={mapstyles.card} key={index}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.handleClick(restaurant.collection.collection_id)
-                }>
-                <Image
-                  // source={{ uri: marker.restaurant.thumb.split('?')[0]}}
-                  source={marker.image}
-                  style={mapstyles.cardImage}
-                  resizeMode="cover"
-                />
-
-                <View style={mapstyles.textContent}>
-                  <Text numberOfLines={1} style={mapstyles.cardtitle}>
-                    {marker.title}
-                  </Text>
-                  <Text numberOfLines={1} style={mapstyles.cardDescription}>
-                    {marker.description}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          ))}
-        </Animated.ScrollView>
+        <Animated.View
+          style={styles.scrollView}
+          contentContainerStyle={styles.endPadding}>
+          <Carousel
+            style={styles.carouselStyle}
+            ref={c => {
+              this._carousel = c;
+            }}
+            data={maps}
+            renderItem={this._renderItem}
+            sliderWidth={width}
+            itemWidth={120}
+            onScroll={event => {
+              this.animation.setValue(event.nativeEvent.contentOffset.x);
+            }}
+            useScrollView={true}
+          />
+        </Animated.View>
       </View>
     );
   }
 }
 
-const mapstyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   scrollView: {
     position: "absolute",
-    bottom: 30,
+    bottom: 20,
     left: 0,
     right: 0,
     paddingVertical: 10
+  },
+  carouselStyle: {
+    padding: 25
   },
   endPadding: {
     paddingRight: width - CARD_WIDTH
@@ -270,15 +257,15 @@ const mapstyles = StyleSheet.create({
   card: {
     padding: 10,
     elevation: 2,
-    backgroundColor: "#FFF",
+    backgroundColor: "rgba(244,255,244, 1)",
     marginHorizontal: 10,
-    shadowColor: "#000",
-    shadowRadius: 10,
+    margin: 30,
+    shadowColor: "rgba(0,72,51, 0.9)",
+    shadowRadius: 5,
     shadowOpacity: 0.3,
-    shadowOffset: { x: 2, y: -2 },
+    shadowOffset: { x: 0, y: 0 },
     height: CARD_HEIGHT,
-    width: CARD_WIDTH,
-    overflow: "hidden"
+    width: CARD_WIDTH
   },
   cardImage: {
     flex: 3,
@@ -306,16 +293,16 @@ const mapstyles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: "rgba(130,4,150, 0.9)"
+    backgroundColor: "rgba(0,153,102, 0.9)"
   },
   ring: {
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "rgba(130,4,150, 0.3)",
+    backgroundColor: "rgba(0,153,102, 0.5)",
     position: "absolute",
-    borderWidth: 1,
-    borderColor: "rgba(130,4,150, 0.5)"
+    borderWidth: 0.5,
+    borderColor: "rgba(0,153,102, 0.5)"
   }
 });
 

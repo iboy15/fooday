@@ -12,8 +12,6 @@ import Carousel from "react-native-snap-carousel";
 import MapView from "react-native-maps";
 import { withNavigation } from "react-navigation";
 import SliderEntryMaps from "./styles/SliderEntryMaps";
-import { connect } from "react-redux";
-import { fetchMaps } from "../redux/actions/restaurant";
 
 const Images = [
   {
@@ -48,12 +46,12 @@ function wp(percentage) {
   return Math.round(value);
 }
 
-const slideHeight = viewportHeight * 0.05;
+const slideHeight = viewportHeight / 4;
 const slideWidth = wp(50);
 const itemHorizontalMargin = wp(2);
 
 export const sliderWidth = viewportWidth;
-export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+export const itemWidth = slideHeight - 20;
 
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = height / 4;
@@ -76,7 +74,7 @@ class MyScreen extends React.Component {
           latitude: -6.2283835483,
           longitude: 106.8555476144
         },
-        title: 'Sate Taichan "Goreng"',
+        title: "Sate Taichan",
         description: "Satay",
         image: Images[1]
       },
@@ -123,7 +121,7 @@ class MyScreen extends React.Component {
     // We should detect when scrolling has stopped then animate
     // We should just debounce the event listener here
     this.animation.addListener(({ value }) => {
-      let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
+      let index = Math.floor(value / itemWidth + 0.3); // animate 30% away from landing on the next item
       if (index >= this.state.markers.length) {
         index = this.state.markers.length - 1;
       }
@@ -180,9 +178,9 @@ class MyScreen extends React.Component {
   render() {
     const interpolations = this.state.markers.map((marker, index) => {
       const inputRange = [
-        (index - 1) * CARD_WIDTH,
-        index * CARD_WIDTH,
-        (index + 1) * CARD_WIDTH
+        (index - 1) * itemWidth,
+        index * itemWidth,
+        (index + 1) * itemWidth
       ];
       const scale = this.animation.interpolate({
         inputRange,
@@ -236,7 +234,6 @@ class MyScreen extends React.Component {
               this._carousel = c;
             }}
             data={this.state.markers}
-            height={260}
             renderItem={this._renderItemWithParallax.bind(this)}
             sliderWidth={sliderWidth}
             itemWidth={itemWidth}

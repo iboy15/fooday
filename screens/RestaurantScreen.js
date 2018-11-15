@@ -25,7 +25,7 @@ export default class RestaurantScreen extends React.Component {
           name: "Gaspar Brasserie",
           address: "185 Sutter St, San Francisco, CA 94109",
           image: {
-            url:
+            uri:
               "https://shoutem.github.io/static/getting-started/restaurant-1.jpg"
           }
         },
@@ -33,7 +33,7 @@ export default class RestaurantScreen extends React.Component {
           name: "Chalk Point Kitchen",
           address: "527 Broome St, New York, NY 10013",
           image: {
-            url:
+            uri:
               "https://shoutem.github.io/static/getting-started/restaurant-2.jpg"
           }
         },
@@ -41,7 +41,7 @@ export default class RestaurantScreen extends React.Component {
           name: "Kyoto Amber Upper East",
           address: "225 Mulberry St, New York, NY 10012",
           image: {
-            url:
+            uri:
               "https://shoutem.github.io/static/getting-started/restaurant-3.jpg"
           }
         },
@@ -49,7 +49,7 @@ export default class RestaurantScreen extends React.Component {
           name: "Gaspar Brasserie",
           address: "185 Sutter St, San Francisco, CA 94109",
           image: {
-            url:
+            uri:
               "https://shoutem.github.io/static/getting-started/restaurant-1.jpg"
           }
         },
@@ -57,7 +57,7 @@ export default class RestaurantScreen extends React.Component {
           name: "Chalk Point Kitchen",
           address: "527 Broome St, New York, NY 10013",
           image: {
-            url:
+            uri:
               "https://shoutem.github.io/static/getting-started/restaurant-2.jpg"
           }
         },
@@ -65,7 +65,7 @@ export default class RestaurantScreen extends React.Component {
           name: "Kyoto Amber Upper East",
           address: "225 Mulberry St, New York, NY 10012",
           image: {
-            url:
+            uri:
               "https://shoutem.github.io/static/getting-started/restaurant-3.jpg"
           }
         }
@@ -73,18 +73,23 @@ export default class RestaurantScreen extends React.Component {
     };
   }
   static navigationOptions = {
-    title: "Restaurant",
-    header: null
+    title: "Newly Opened Restaurant"
   };
   renderRow(rowData, sectionId, index) {
     // rowData contains grouped data for one row,
     // so we need to remap it into cells and pass to GridRow
+    const { navigation } = this.props;
     if (index === "0") {
+      const title = rowData[0].name;
+      const description = rowData[0].address;
+      const image = rowData[0].image;
       return (
-        <TouchableOpacity key={index}>
-          <ImageBackground
-            styleName="large"
-            source={{ uri: rowData[0].image.url }}>
+        <TouchableOpacity
+          key={index}
+          onPress={() =>
+            navigation.navigate("Details", { title, description, image })
+          }>
+          <ImageBackground styleName="large" source={rowData[0].image}>
             <Tile>
               <Title styleName="md-gutter-bottom">{rowData[0].name}</Title>
               <Subtitle styleName="sm-gutter-horizontal">
@@ -98,13 +103,18 @@ export default class RestaurantScreen extends React.Component {
     }
 
     const cellViews = rowData.map((restaurant, id) => {
+      const title = restaurant.name;
+      const description = restaurant.address;
+      const image = restaurant.image;
       return (
-        <TouchableOpacity key={id} styleName="flexible">
+        <TouchableOpacity
+          key={id}
+          styleName="flexible"
+          onPress={() =>
+            navigation.navigate("Details", { title, description, image })
+          }>
           <Card styleName="flexible">
-            <Image
-              styleName="medium-wide"
-              source={{ uri: restaurant.image.url }}
-            />
+            <Image styleName="medium-wide" source={restaurant.image} />
             <View styleName="content">
               <Subtitle numberOfLines={3}>{restaurant.name}</Subtitle>
               <View styleName="horizontal">
@@ -136,8 +146,11 @@ export default class RestaurantScreen extends React.Component {
 
     return (
       <Screen>
-        <NavigationBar title="Restaurants" styleName="inline" />
-        <ListView data={groupedData} renderRow={this.renderRow} />
+        <ListView
+          navigation={this.props.navigation}
+          data={groupedData}
+          renderRow={this.renderRow.bind(this)}
+        />
       </Screen>
     );
   }

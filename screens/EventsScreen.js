@@ -12,7 +12,7 @@ import { sliderWidth, itemWidth } from "./styles/SliderEntry.style";
 import styles, { colors } from "./styles/index.style";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 // import LinearGradient from 'react-native-linear-gradient';
-import { ENTRIES1, ENTRIES2 } from "./styles/entries";
+import { ENTRIES6 } from "./styles/entries";
 import SliderEntry from "./styles/SliderEntry";
 import { scrollInterpolators, animatedStyles } from "./styles/animations";
 
@@ -58,7 +58,7 @@ export default class EventsSCreen extends React.Component {
         <Text style={styles.subtitle}>{title}</Text>
         <Carousel
           ref={c => (this._slider1Ref = c)}
-          data={ENTRIES1}
+          data={ENTRIES6}
           renderItem={this._renderItemWithParallax}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
@@ -82,8 +82,8 @@ export default class EventsSCreen extends React.Component {
 
   render() {
     const example1 = this.mainExample(
-      "Near You",
-      "Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots"
+      "Events For You",
+      "Enjoy Your WeekEnd With Food Pleasure"
     );
 
     return (

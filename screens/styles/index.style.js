@@ -23,7 +23,7 @@ export default StyleSheet.create({
     flex: 1
   },
   exampleContainer: {
-    paddingVertical: 30
+    paddingVertical: 10
   },
   exampleContainerDark: {
     backgroundColor: colors.black
@@ -32,10 +32,10 @@ export default StyleSheet.create({
     backgroundColor: "white"
   },
   title: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     backgroundColor: "transparent",
     color: "rgba(255, 255, 255, 0.9)",
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
     textAlign: "center"
   },
@@ -45,10 +45,10 @@ export default StyleSheet.create({
   },
   subtitle: {
     marginTop: 5,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     backgroundColor: "transparent",
     color: "rgba(255, 255, 255, 0.75)",
-    fontSize: 13,
+    fontSize: 12,
     fontStyle: "italic",
     textAlign: "center"
   },

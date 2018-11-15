@@ -180,3 +180,42 @@ export const ENTRIES5 = [
       "https://b.zmtcdn.com/data/reviews_photos/f33/9055476e285010f5169a926705e2af33_1494137994.jpg"
   }
 ];
+
+export const ENTRIES6 = [
+  {
+    title: "Hotel Indonesia Street Food Festival",
+    subtitle: "Hotel Indonesia Jakarta 23-12-2018",
+    illustration:
+      "http://jktgo.com/wp-content/uploads/2017/08/e-flyer-street-food-festival-2017-1502801957.jpg"
+  },
+  {
+    title: "Discovery Indonesian Food Festival",
+    subtitle: "Monas Jakarta 09-11-2018",
+    illustration:
+      "http://jadwalevent.web.id/wp-content/uploads/2018/07/Discovery-Indonesian-Food-Festival.jpg"
+  },
+  {
+    title: "Indonesian Food Festival",
+    subtitle: "Emporium Pluit Mall 24-12-2018",
+    illustration:
+      "http://jadwalevent.web.id/wp-content/uploads/2016/10/Emporium-Pluit-Mall-Indonesian-Food-Festival.jpg"
+  },
+  {
+    title: "Indonesian Food Festival 2018",
+    subtitle: "Mega Mall 17-11-2018",
+    illustration:
+      "http://primer.com.ph/event/wp-content/uploads/sites/10/2018/05/Indonesian-Food-Fest-1.jpg"
+  },
+  {
+    title: "The Indonesian Food & Trade Festival",
+    subtitle: "Kuningan Jakarta 22-12-09",
+    illustration:
+      "https://www.weekendnotes.com/im/001/00/the-indonesian-food-festival-2015-by-iip-yahya1.jpg"
+  },
+  {
+    title: "South East Asia Festival 2017",
+    subtitle: "Grogol 20-12-30",
+    illustration:
+      "https://melbournefoodfestivals.com.au/wp-content/uploads/2017/04/cf1f2ef52717adf6e144fc6559b2f51b.jpg"
+  }
+];
