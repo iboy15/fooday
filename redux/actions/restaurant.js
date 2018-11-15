@@ -68,6 +68,34 @@ export const fetchMaps = () => {
   };
 };
 
+export const fetchResto = () => {
+  return dispatch => {
+    firebase
+      .database()
+      .ref("/resto")
+      .on("value", function(snapshot) {
+        const resto = snapshot.val();
+        const myresto = JSON.parse(
+          JSON.stringify(resto, function(k, v) {
+            if (v === undefined) {
+              return null;
+            }
+            return v;
+          })
+        );
+        // const myresto = JSON.parse(obj);
+        console.log(snapshot.val());
+        console.log(myresto);
+        dispatch({
+          type: "ADD_RESTO",
+          payload: {
+            resto: myresto
+          }
+        });
+      });
+  };
+};
+
 // export const fetchMaps = () => {
 //   return dispatch => {
 //     axios

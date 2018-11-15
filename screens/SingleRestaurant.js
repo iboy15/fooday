@@ -173,8 +173,10 @@ export default class LinksScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        {this.renderImage()}
+      <ScrollView {...driver.scrollViewProps}>
+        <Parallax driver={driver} scrollSpeed={2}>
+          {this.renderImage()}
+        </Parallax>
         <View styleName="solid">
           {this.renderTitle()}
           {this.renderInfo()}

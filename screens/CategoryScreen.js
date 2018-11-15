@@ -12,8 +12,8 @@ import { sliderWidth, itemWidth } from "./styles/SliderEntry.style";
 import styles, { colors } from "./styles/index.style";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 // import LinearGradient from 'react-native-linear-gradient';
-import { ENTRIES1, ENTRIES2 } from "./styles/entries";
-import SliderEntryMenu from "./styles/SliderEntryMenu";
+import { ENTRIES7, ENTRIES8 } from "./styles/entries";
+import SliderEntryMenu from "./styles/SliderEntryMenu.1";
 import { scrollInterpolators, animatedStyles } from "./styles/animations";
 
 const IS_ANDROID = Platform.OS === "android";
@@ -54,11 +54,11 @@ export default class CategoryScreen extends React.Component {
 
     return (
       <View style={styles.exampleContainer}>
-        <Text style={styles.title}>{`Example ${number}`}</Text>
+        <Text style={styles.title}>{number}</Text>
         <Text style={styles.subtitle}>{title}</Text>
         <Carousel
           ref={c => (this._slider1Ref = c)}
-          data={ENTRIES1}
+          data={ENTRIES7}
           renderItem={this._renderItemWithParallax}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
@@ -77,7 +77,7 @@ export default class CategoryScreen extends React.Component {
           onSnapToItem={index => this.setState({ slider1ActiveSlide: index })}
         />
         <Pagination
-          dotsLength={ENTRIES1.length}
+          dotsLength={ENTRIES7.length}
           activeDotIndex={slider1ActiveSlide}
           containerStyle={styles.paginationContainer}
           dotColor={"rgba(255, 255, 255, 0.92)"}
@@ -95,10 +95,10 @@ export default class CategoryScreen extends React.Component {
   momentumExample(number, title) {
     return (
       <View style={styles.exampleContainer}>
-        <Text style={styles.title}>{`Example ${number}`}</Text>
+        <Text style={styles.title}>{number}</Text>
         <Text style={styles.subtitle}>{title}</Text>
         <Carousel
-          data={ENTRIES2}
+          data={ENTRIES8}
           renderItem={this._renderItem}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
@@ -135,7 +135,7 @@ export default class CategoryScreen extends React.Component {
           {title}
         </Text>
         <Carousel
-          data={isTinder ? ENTRIES2 : ENTRIES1}
+          data={ENTRIES7}
           renderItem={isTinder ? this._renderLightItem : this._renderItem}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
@@ -158,11 +158,9 @@ export default class CategoryScreen extends React.Component {
           styles.exampleContainer,
           isEven ? styles.exampleContainerDark : styles.exampleContainerLight
         ]}>
-        <Text
-          style={[
-            styles.title,
-            isEven ? {} : styles.titleDark
-          ]}>{`Example ${number}`}</Text>
+        <Text style={[styles.title, isEven ? {} : styles.titleDark]}>
+          {number}
+        </Text>
         <Text style={[styles.subtitle, isEven ? {} : styles.titleDark]}>
           {title}
         </Text>
@@ -196,47 +194,10 @@ export default class CategoryScreen extends React.Component {
 
   render() {
     const example1 = this.mainExample(
-      1,
-      "Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots"
+      "Viral Foods",
+      "Kind of Viral Foods For you"
     );
-    const example2 = this.momentumExample(
-      2,
-      "Momentum | Left-aligned | Active animation"
-    );
-    const example3 = this.layoutExample(
-      3,
-      '"Stack of cards" layout | Loop',
-      "stack"
-    );
-    const example4 = this.layoutExample(
-      4,
-      '"Tinder-like" layout | Loop',
-      "tinder"
-    );
-    const example5 = this.customExample(
-      5,
-      "Custom animation 1",
-      1,
-      this._renderItem
-    );
-    const example6 = this.customExample(
-      6,
-      "Custom animation 2",
-      2,
-      this._renderLightItem
-    );
-    const example7 = this.customExample(
-      7,
-      "Custom animation 3",
-      3,
-      this._renderDarkItem
-    );
-    const example8 = this.customExample(
-      8,
-      "Custom animation 4",
-      4,
-      this._renderLightItem
-    );
+    const example2 = this.momentumExample("Instagramable", "Ever You Eat it ?");
 
     return (
       <SafeAreaView style={styles.safeArea}>

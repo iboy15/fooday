@@ -164,7 +164,7 @@ export default class Details extends Component {
             styleName="medium-tall">
             <View styleName="overlay vertical v-center h-center fill-parent">
               <Subtitle>{`Iboyzzzzz`}</Subtitle>
-              <Caption>{`Iboy Location`}</Caption>
+              <Caption>{`Restaurant Location`}</Caption>
             </View>
           </InlineMap>
         </TouchableOpacity>

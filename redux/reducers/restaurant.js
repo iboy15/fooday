@@ -1,6 +1,7 @@
 const intialState = {
   restaurantData: [],
-  mapData: []
+  mapData: [],
+  restoData: []
 };
 
 const restaurantReducer = (state = intialState, action) => {
@@ -17,6 +18,11 @@ const restaurantReducer = (state = intialState, action) => {
       return {
         ...state,
         mapData: action.payload.maps
+      };
+    case "ADD_RESTO":
+      return {
+        ...state,
+        restoData: action.payload.resto
       };
   }
 };

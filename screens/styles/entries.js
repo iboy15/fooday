@@ -219,3 +219,80 @@ export const ENTRIES6 = [
       "https://melbournefoodfestivals.com.au/wp-content/uploads/2017/04/cf1f2ef52717adf6e144fc6559b2f51b.jpg"
   }
 ];
+
+export const ENTRIES7 = [
+  {
+    title: "Sostel",
+    subtitle: "Sosis Telur",
+    illustration: "https://bacaterus.com/wp-content/uploads/2018/01/Sostel.jpg"
+  },
+  {
+    title: "Indomie Donat",
+    subtitle: "Kriuk kriuk renyah",
+    illustration:
+      "https://bacaterus.com/wp-content/uploads/2016/11/Donat-Indomie.jpg"
+  },
+  {
+    title: "Ayam/Bebek Geprek Pedas Mozarella",
+    subtitle: "Hot & it's mozalrella",
+    illustration:
+      "http://bacaterus.com/wp-content/uploads/2018/01/1506483021482-cover_resep.jpg"
+  },
+  {
+    title: "Es Kepal Milo",
+    subtitle: "Es Serut dilumuri coklat milo",
+    illustration:
+      "https://bacaterus.com/wp-content/uploads/2018/05/Es-Kepal-Milo.jpg"
+  },
+  {
+    title: "Thai Manggo",
+    subtitle: "King Manggo from thailand",
+    illustration:
+      "https://assets-pergikuliner.com/3XFkfzteMDh1JGglrhrHXpHrc_I=/385x290/smart/https://assets-pergikuliner.com/uploads/image/picture/727277/picture-1510025968.jpg"
+  },
+  {
+    title: "Nugget Pisang",
+    subtitle: "Krispi Renyah",
+    illustration:
+      "https://bacaterus.com/wp-content/uploads/2018/01/yuk-bikin-nugget-pisang-nih-resepnya_c_165573.jpg"
+  }
+];
+
+export const ENTRIES8 = [
+  {
+    title: "Burger hitam",
+    subtitle: "kuro burger",
+    illustration:
+      "https://cdn.idntimes.com/content-images/post/20180302/21820185-225869954612005-833933029402476544-n-4fce14b0aaf8b1b52fcc2f651a4d579c.jpg"
+  },
+  {
+    title: "Doughnut milkshake",
+    subtitle: "OMG, gimme more sugar!",
+    illustration:
+      "https://cdn.idntimes.com/content-images/post/20180302/27574960-183259125611917-6355190076267298816-n-170f4361b2d838be30c8e95638c4cc9c.jpg"
+  },
+  {
+    title: "Tower ice cream",
+    subtitle: "Buruan foto deh sebelum meleleh!",
+    illustration:
+      "https://cdn.idntimes.com/content-images/post/20180302/20986652-1894830847434427-7632482344728788992-n-896ee42c694b711124ac2eec075120ae.jpg"
+  },
+  {
+    title: "Animal pao",
+    subtitle: "Roti kukus ini berasal dari Tiongkok",
+    illustration:
+      "https://cdn.idntimes.com/content-images/post/20180302/27890769-212841402787904-4522757543742668800-n-fe86e5f342a233c288a8e42ee6b9e026.jpg"
+  },
+  {
+    title: "Taiyaki ice cream",
+    subtitle: "Party in your mouth!",
+    illustration:
+      "https://cdn.idntimes.com/content-images/post/20180302/27880232-162340671086603-4282303198380687360-n-56ba8f9b5e47085acd9da04dba5714ad.jpg"
+  },
+  {
+    title: "Martabak manis",
+    subtitle: "topping-topping lezat",
+    illustration:
+      "https://cdn.idntimes.com/content-images/post/20180302/26158010-144231076282330-6490356437988933632-n-c0175936ab188178c21cea4def4c8d16.jpg"
+  }
+];

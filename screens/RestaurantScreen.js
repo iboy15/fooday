@@ -14,8 +14,13 @@ import {
   Image,
   Caption
 } from "@shoutem/ui";
+import { withNavigation } from "react-navigation";
+import { AppLoading } from "expo";
 
-export default class RestaurantScreen extends React.Component {
+import { connect } from "react-redux";
+import { fetchResto } from "../redux/actions/restaurant";
+
+class RestaurantScreen extends React.Component {
   constructor(props) {
     super(props);
     this.renderRow = this.renderRow.bind(this);
@@ -46,32 +51,37 @@ export default class RestaurantScreen extends React.Component {
           }
         },
         {
-          name: "Gaspar Brasserie",
-          address: "185 Sutter St, San Francisco, CA 94109",
+          name: "Sushi Academy",
+          address: "1900 Warner Ave. Unit A Santa Ana, CA",
           image: {
             uri:
-              "https://shoutem.github.io/static/getting-started/restaurant-1.jpg"
+              "https://shoutem.github.io/static/getting-started/restaurant-4.jpg"
           }
         },
         {
-          name: "Chalk Point Kitchen",
-          address: "527 Broome St, New York, NY 10013",
+          name: "Sushibo",
+          address: "35 Sipes Key, New York, NY 10012",
           image: {
             uri:
-              "https://shoutem.github.io/static/getting-started/restaurant-2.jpg"
+              "https://shoutem.github.io/static/getting-started/restaurant-5.jpg"
           }
         },
         {
-          name: "Kyoto Amber Upper East",
-          address: "225 Mulberry St, New York, NY 10012",
+          name: "Mastergrill",
+          address: "550 Upton Rue, San Francisco, CA 94109",
           image: {
             uri:
-              "https://shoutem.github.io/static/getting-started/restaurant-3.jpg"
+              "https://shoutem.github.io/static/getting-started/restaurant-6.jpg"
           }
         }
       ]
     };
   }
+
+  componentDidMount() {
+    this.props.fetchResto();
+  }
+
   static navigationOptions = {
     title: "Newly Opened Restaurant"
   };
@@ -133,6 +143,7 @@ export default class RestaurantScreen extends React.Component {
 
   render() {
     const restaurants = this.state.restaurants;
+    //const restaurants = this.props;
     // Group the restaurants into rows with 2 columns, except for the
     // first restaurant. The first restaurant is treated as a featured restaurant
     let isFirstArticle = true;
@@ -146,12 +157,35 @@ export default class RestaurantScreen extends React.Component {
 
     return (
       <Screen>
-        <ListView
-          navigation={this.props.navigation}
-          data={groupedData}
-          renderRow={this.renderRow.bind(this)}
-        />
+        {restaurants.length <= 0 ? (
+          <AppLoading />
+        ) : (
+          <ListView
+            navigation={this.props.navigation}
+            data={groupedData}
+            renderRow={this.renderRow.bind(this)}
+          />
+        )}
       </Screen>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    resto: state.restaurants.restoData
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchResto: () => dispatch(fetchResto())
+  };
+};
+
+RestaurantScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RestaurantScreen);
+
+export default withNavigation(RestaurantScreen);
